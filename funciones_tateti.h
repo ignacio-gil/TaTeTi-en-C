@@ -53,20 +53,22 @@ void graficar(int M[3][3]){
 
 //Input jugador
 void input_jugador(int matriz[3][3], int jugador){
-    int pos, aux, cont;
+    int pos, aux, cont, aux2=0;
     do{
         aux=0;
         do{ 
             system("cls");
-            graficar(matriz); 
-            printf("\n\n %c Introduce posicion '%c' (1-9): %s", 26, jugador, NORMAL); scanf("%i", &pos);
+            graficar(matriz);
+            if(aux2==1){printf("%sPOSICION INVALIDA!!!%s",ROJO_T,CYAN_T);aux2=0;}
+            printf("\n %c Introduce posicion '%c' (1-9): %s", 26, jugador, NORMAL); scanf("%i", &pos);
         } while (pos<1 || pos>9);
 
         cont=0;
         for(int i=0;i<3;i++){
             for(int j=0;j<3;j++){   
                 cont++;
-                if(cont==pos && matriz[i][j]=='.'){matriz[i][j]=jugador;aux=1;break;}
+                if(cont==pos && matriz[i][j]=='.'){matriz[i][j]=jugador;aux=1;break;
+                } else if(cont==pos && matriz[i][j]!='.'){aux2=1;}
             }
         }
         
